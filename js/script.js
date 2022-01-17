@@ -1,6 +1,10 @@
 const area = document.getElementById('area');
 let move = 0;
 let result = '';
+const contentWrapper = document.getElementById('content');
+const modalResult = document.getElementById('modal-result-wrapper');
+const overlay = document.getElementById('overlay');
+const btnClose = document.getElementById('btn-close');
 
 area.addEventListener('click', (e) => {
   if (e.target.className === 'box') {
@@ -42,5 +46,14 @@ const check = () => {
 };
 
 const prepareResult = (winner) => {
-  console.log(winner);
+  contentWrapper.innerHTML = `Победили ${winner}!`;
+  modalResult.style.display = 'block';
 };
+
+const closeModal = () => {
+  modalResult.style.display = 'none';
+  location.reload();
+};
+
+overlay.addEventListener('click', closeModal);
+btnClose.addEventListener('click', closeModal);
